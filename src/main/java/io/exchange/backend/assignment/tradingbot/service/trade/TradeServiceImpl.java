@@ -7,6 +7,7 @@ import io.exchange.backend.assignment.tradingbot.service.feed.EventFeedService;
 import io.exchange.backend.assignment.tradingbot.statemachine.event.TradeEvents;
 import io.exchange.backend.assignment.tradingbot.statemachine.state.TradeState;
 import io.exchange.backend.assignment.tradingbot.statemachine.variable.TradeVariable;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.math.BigDecimal;
 /**
  * Trade bot service implementation. Infra for trading
  */
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class TradeServiceImpl implements TradeService {
@@ -25,12 +27,6 @@ public class TradeServiceImpl implements TradeService {
     private final StateMachine<TradeState, TradeEvents> stateMachine;
     private final EventFeedService eventFeedService;
     private final TradeProperties tradeProperties;
-
-    public TradeServiceImpl(StateMachine<TradeState, TradeEvents> stateMachine, EventFeedService eventFeedService, TradeProperties tradeProperties) {
-        this.stateMachine = stateMachine;
-        this.eventFeedService = eventFeedService;
-        this.tradeProperties = tradeProperties;
-    }
 
     /**
      * Service for make trade with predefined prices, limits and productId

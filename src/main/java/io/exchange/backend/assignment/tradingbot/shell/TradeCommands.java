@@ -4,6 +4,7 @@ import io.exchange.backend.assignment.tradingbot.service.trade.TradeService;
 import io.exchange.backend.assignment.tradingbot.statemachine.event.TradeEvents;
 import io.exchange.backend.assignment.tradingbot.statemachine.state.TradeState;
 import io.exchange.backend.assignment.tradingbot.statemachine.variable.TradeVariable;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -15,17 +16,13 @@ import java.math.BigDecimal;
 /**
  * Created for testing and control
  */
-@ShellComponent
+@RequiredArgsConstructor
 @Slf4j
+@ShellComponent
 public class TradeCommands {
 
-    private StateMachine<TradeState, TradeEvents> stateMachine;
-    private TradeService tradeService;
-
-    public TradeCommands(StateMachine<TradeState, TradeEvents> stateMachine, TradeService tradeService) {
-        this.stateMachine = stateMachine;
-        this.tradeService = tradeService;
-    }
+    private final StateMachine<TradeState, TradeEvents> stateMachine;
+    private final TradeService tradeService;
 
 
     @ShellMethod("Connect to exchange quotes feed")

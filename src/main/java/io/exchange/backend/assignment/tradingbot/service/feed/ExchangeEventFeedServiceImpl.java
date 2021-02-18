@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.exchange.backend.assignment.tradingbot.configuration.TradeProperties;
 import io.exchange.backend.assignment.tradingbot.model.quote.FeedEvent;
 import io.exchange.backend.assignment.tradingbot.model.quote.QuoteSubscription;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -20,19 +21,15 @@ import java.util.Collections;
 /**
  * Implementation for EventFeedService interface. Read events from BUX server web socket
  */
-@Service
+
+@RequiredArgsConstructor
 @Slf4j
+@Service
 public class ExchangeEventFeedServiceImpl implements EventFeedService {
 
     private final ObjectMapper objectMapper;
     private final TradeProperties tradeProperties;
     private final WebSocketClient webSocketClient;
-
-    public ExchangeEventFeedServiceImpl(ObjectMapper objectMapper, TradeProperties tradeProperties, WebSocketClient webSocketClient) {
-        this.objectMapper = objectMapper;
-        this.tradeProperties = tradeProperties;
-        this.webSocketClient = webSocketClient;
-    }
 
     /**
      * @param productId id of product for subscription

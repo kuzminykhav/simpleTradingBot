@@ -1,6 +1,7 @@
 package io.exchange.backend.assignment.tradingbot.service.order;
 
 import io.exchange.backend.assignment.tradingbot.model.order.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -20,24 +21,18 @@ import static io.exchange.backend.assignment.tradingbot.model.order.TradeSourceT
  * Implementation of OrderService
  */
 
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class OrderServiceImpl implements OrderService {
 
     private final WebClient webClient;
+    @Value("${exchange.bot.trade.server.open.path}")
     private final String exchangeServerOpenPath;
+    @Value("${exchange.bot.trade.server.close.path}")
     private final String exchangeServerClosePath;
+    @Value("${exchange.bot.trade.server.version}")
     private final String exchangeServerVersion;
-
-    public OrderServiceImpl(WebClient webClient,
-                            @Value("${exchange.bot.trade.server.open.path}") String exchangeServerOpenPath,
-                            @Value("${exchange.bot.trade.server.close.path}") String exchangeServerClosePath,
-                            @Value("${exchange.bot.trade.server.version}") String exchangeServerVersion) {
-        this.webClient = webClient;
-        this.exchangeServerOpenPath = exchangeServerOpenPath;
-        this.exchangeServerClosePath = exchangeServerClosePath;
-        this.exchangeServerVersion = exchangeServerVersion;
-    }
 
     /**
      * Calling BUX server for opening position
