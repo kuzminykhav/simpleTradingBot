@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "docker" 
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "daily"
+    target-branch: "master"
+  - package-ecosystem: "maven" 
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "daily"
+    target-branch: "master"
