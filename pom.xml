@@ -17,7 +17,7 @@
         <java.version>8</java.version>
         <jackson.version>2.14.2</jackson.version>
         <elasticactors.version>2.7.0</elasticactors.version>
-		<spring.shell.version>2.0.1.RELEASE</spring.shell.version>
+		<spring.shell.version>3.0.1</spring.shell.version>
     </properties>
     <dependencies>
         <dependency>
